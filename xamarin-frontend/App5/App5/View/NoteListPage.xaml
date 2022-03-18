@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app5="clr-namespace:App5;assembly=App5"
+             xmlns:pageElements="clr-namespace:App5.PageElements;assembly=App5"
+             xmlns:components="clr-namespace:App5.components;assembly=App5"
+             x:Name="ContentPage"
+             x:Class="App5.NoteListPage"
+             SizeChanged="NotePage_OnSizeChanged"
+             BackgroundColor="WhiteSmoke">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <app5:StringToDoubleConverter x:Key="StringToDouble" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Horizontal">
+
+
+        <ScrollView x:Name="NavDrawer">
+
+            <components:NavigationDrawerView
+                x:Name="NavigationDrawer"
+                BackgroundColor="White">
+
+                <components:NavigationDrawerView.HeaderOpened>
+
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Vertical">
+                                    <Button Text="Закрыть меню" Clicked="ToggleNavigationDrawer"></Button>
+                                    <Button Text="Добавить заметку" Command="{Binding CreateNoteCommand}"></Button>
+                                    <Button Text="К аккаунту" Command="{Binding GoToAccountCommand}"></Button>
+                                    <Button Text="Запросить с сервера данные" Command="{Binding PullAccountCommand}"></Button>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+
+                </components:NavigationDrawerView.HeaderOpened>
+
+                <components:NavigationDrawerView.HeaderClosed>
+
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Orientation="Horizontal">
+                                    <Button Text="Открыть меню" Clicked="ToggleNavigationDrawer"></Button>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+
+                </components:NavigationDrawerView.HeaderClosed>
+
+                <ListView ItemsSource="{Binding AllNotes}"
+                          SelectedItem="{Binding SelectedNote, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout>
+                                        <Label Text="{Binding Title}" />
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </components:NavigationDrawerView>
+        </ScrollView>
+
+
+        <StackLayout x:Name="Layout" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                     BackgroundColor="{Binding SelectedNote.Color}"
+                     
+                     IsVisible="{Binding IsNoteSelected}">
+
+
+            <FlexLayout FlexLayout.Wrap="Wrap" Direction="Row">
+                
+                <StackLayout FlexLayout.Grow="1" Orientation="Horizontal" >
+                    <Picker ItemsSource="{Binding SelectedNote.ColorTitlesRus}"
+                            SelectedItem="{Binding SelectedNote.ColorTitle}" />
+
+                    <Picker IsVisible="{Binding SelectedNote.ShowsFontPicker}"
+                            ItemsSource="{Binding SelectedNote.AvailableFontSizes, Mode=TwoWay }"
+                            SelectedItem="{Binding SelectedNote.SelectedTextElement.FontSizeTitle, Mode=TwoWay, FallbackValue=18}" 
+                            />
+                    
+                    <Button Text="Прикрепить локацию"
+                            Command="{Binding SelectedNote.AttachGeolocationCommand}" />
+
+                </StackLayout>
+
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Picker x:Name="TypeElementPicker"
+                            
+                            ItemsSource="{Binding NoteEementTypes}"
+                            SelectedIndexChanged="TypeElementPicker_OnSelectedIndexChanged" />
+                    
+                    <Button Text="Удалить заметку" Command="{Binding DeleteSelectedNoteCommand}"></Button>
+                </StackLayout>
+
+            </FlexLayout>
+
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                <Entry Text="{ Binding SelectedNote.Title}"
+                       HorizontalOptions="FillAndExpand" />
+                
+                <Label IsVisible="{Binding SelectedNote.HasLocation}"
+                       Text="{Binding SelectedNote.LocationText}"/>
+
+                <AbsoluteLayout
+
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    x:Name="NoteField">
+
+                </AbsoluteLayout>
+
+
+            </StackLayout>
+
+
+        </StackLayout>
+
+
+    </StackLayout>
+
+
+</ContentPage>

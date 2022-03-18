@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App5.App">
+    <Application.Resources>
+        <Style TargetType="Editor">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{x:Static Color.Transparent}" />
+                                <Setter Property="PlaceholderColor" Value="{x:Static Color.Transparent}" />
+                                <Setter Property="TextColor" Value="{x:Static Color.Red}" />
+                                <!-- <Setter Property="TextColor" Value="{DynamicResource ColorForegroundFaded}" /> -->
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Unfocused">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{x:Static Color.Transparent}" />
+                                <Setter Property="PlaceholderColor" Value="{x:Static Color.Transparent}" />
+                                <Setter Property="TextColor" Value="{x:Static Color.Transparent}" />
+                                <!-- <Setter Property="TextColor" Value="{DynamicResource ColorForegroundFaded}" /> -->
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

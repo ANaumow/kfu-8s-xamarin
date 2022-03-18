@@ -1,0 +1,1 @@
+C:\Projects\kfu-8s-xamarin\xamarin-frontend\App5\App5.UWP\App5.UWP.csproj;x64

@@ -1,0 +1,1 @@
+![Превью](./resources/img.png)

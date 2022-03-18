@@ -1,0 +1,58 @@
+package crc64ef1383d488bd94c0;
+
+
+public class PlatformTouchEff_AccessibilityListener
+	extends java.lang.Object
+	implements
+		mono.android.IGCUserPeer,
+		android.view.accessibility.AccessibilityManager.AccessibilityStateChangeListener,
+		android.view.accessibility.AccessibilityManager.TouchExplorationStateChangeListener
+{
+/** @hide */
+	public static final String __md_methods;
+	static {
+		__md_methods = 
+			"n_onAccessibilityStateChanged:(Z)V:GetOnAccessibilityStateChanged_ZHandler:Android.Views.Accessibility.AccessibilityManager/IAccessibilityStateChangeListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
+			"n_onTouchExplorationStateChanged:(Z)V:GetOnTouchExplorationStateChanged_ZHandler:Android.Views.Accessibility.AccessibilityManager/ITouchExplorationStateChangeListenerInvoker, Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null\n" +
+			"";
+		mono.android.Runtime.register ("TouchEffect.Android.PlatformTouchEff+AccessibilityListener, TouchEffect.Droid", PlatformTouchEff_AccessibilityListener.class, __md_methods);
+	}
+
+
+	public PlatformTouchEff_AccessibilityListener ()
+	{
+		super ();
+		if (getClass () == PlatformTouchEff_AccessibilityListener.class)
+			mono.android.TypeManager.Activate ("TouchEffect.Android.PlatformTouchEff+AccessibilityListener, TouchEffect.Droid", "", this, new java.lang.Object[] {  });
+	}
+
+
+	public void onAccessibilityStateChanged (boolean p0)
+	{
+		n_onAccessibilityStateChanged (p0);
+	}
+
+	private native void n_onAccessibilityStateChanged (boolean p0);
+
+
+	public void onTouchExplorationStateChanged (boolean p0)
+	{
+		n_onTouchExplorationStateChanged (p0);
+	}
+
+	private native void n_onTouchExplorationStateChanged (boolean p0);
+
+	private java.util.ArrayList refList;
+	public void monodroidAddReference (java.lang.Object obj)
+	{
+		if (refList == null)
+			refList = new java.util.ArrayList ();
+		refList.add (obj);
+	}
+
+	public void monodroidClearReferences ()
+	{
+		if (refList != null)
+			refList.clear ();
+	}
+}
